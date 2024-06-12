@@ -77,8 +77,10 @@ char Transmiter_GetCharacterFromBuffer(){
 		return TERMINATOR;
 	}
 	else {
+		char cDataBufor = sTransmiterBuffer.cData[sTransmiterBuffer.cCharCtr];
 		sTransmiterBuffer.cCharCtr++;
-		return sTransmiterBuffer.cData[sTransmiterBuffer.cCharCtr];
+		return cDataBufor;
+		
 	}
 	
 }
@@ -87,7 +89,7 @@ void Transmiter_SendString(char cString[]){
 	sTransmiterBuffer.eStatus = BUSY;
 	CopyString(cString,sTransmiterBuffer.cData);
 	U0THR = sTransmiterBuffer.cData[0];
-	sTransmiterBuffer.cCharCtr = 0;
+	sTransmiterBuffer.cCharCtr = 1;
 }
 
 enum eTransmiterStatus Transmiter_GetStatus(void){
@@ -107,8 +109,10 @@ __irq void UART0_Interrupt (void) {
    
    if ((uiCopyOfU0IIR & mINTERRUPT_PENDING_IDETIFICATION_BITFIELD) == mTHRE_INTERRUPT_PENDING)              // wyslano znak - nadajnik pusty 
    {
-     if(Transmiter_GetStatus()==BUSY){
-				U0THR=Transmiter_GetCharacterFromBuffer();
+		 unsigned char ucTransmiterBufor = Transmiter_GetCharacterFromBuffer();
+		 
+     if(ucTransmiterBufor != NULL){
+				U0THR=ucTransmiterBufor;
 		 }
    }
 	

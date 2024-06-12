@@ -1,8 +1,9 @@
 #define MAX_KEYWORD_STRING_LTH 		11
 #define MAX_TOKEN_NR   						3
-#define MAX_KEYWORD_NR 						3
+#define MAX_KEYWORD_NR 						4
 
 enum KeywordCode{
+	ID,
 	CC,
 	CL,
 	GT

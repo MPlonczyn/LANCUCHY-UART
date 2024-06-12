@@ -1,7 +1,7 @@
 // Odbior sygnalow
 #define TERMINATOR																 '\r'
-#define RECIEVER_SIZE 														 13
-#define TRANSMITER_SIZE														 13
+#define RECIEVER_SIZE 														 16
+#define TRANSMITER_SIZE														 16
 enum eRecieverStatus {EMPTY, READY, OVERFLOW};
 
 struct RecieverBuffer{ 

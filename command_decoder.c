@@ -5,6 +5,7 @@
 #define TOKEN_DELIMITER						' '
 
 struct Keyword asKeywordList[MAX_KEYWORD_NR]={
+{ID, "ID"},
 {CC, "calc"},
 {CL, "callib"},
 {GT, "goto"},
